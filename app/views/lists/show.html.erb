@@ -1,0 +1,12 @@
+<h1><%= @list.name %></h1>
+
+<h3>Bookmarks:</h3>
+
+<p><strong>Comment:</strong> <%= @bookmark.comment %>  <%= link_to "🗑️", list_path(@list), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%></p>
+
+<%= simple_form_for [@list, @bookmark ] do |f| %>
+  <%=  f.input :comment %>
+  <%= f.association :movie %>
+  <%= f.button :submit, class: "btn btn-primary"%>
+<% end %>
+<br>
