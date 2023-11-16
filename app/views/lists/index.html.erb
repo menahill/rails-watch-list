@@ -8,7 +8,8 @@
 <ol>
   <% @lists.each do |list| %>
   <div>
-    <h4><%= link_to list.name, list_path(list) %></h4>
+    <h4><%= link_to list.name, list_path(list) %>
+      <%= link_to "🗑️", list_path(list), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%></h4>
   </div>
   <% end %>
 </ol>
