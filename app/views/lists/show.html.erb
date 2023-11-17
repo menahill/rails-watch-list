@@ -1,17 +1,33 @@
 
-<div class = "container mt-5">
-  <h1><%= @list.name %></h1>
 
-<h3>Bookmarks:</h3>
-
-<p><strong>Comment:</strong> <%= @bookmark.comment %>  <%= link_to "🗑️", list_path(@list), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%></p>
-
-<%= simple_form_for [@list, @bookmark ] do |f| %>
-  <%=  f.input :comment %>
-  <%= f.association :movie %>
-  <%= f.button :submit, class: "btn btn-primary"%>
-<% end %>
-<br>
-
-<%= link_to "↩︎ Back to List", lists_path %>
+<div class = "container py-5">
+  <div class = "row">
+    <div class = "col-12">
+      <div class = "bg-white rounded p-3 shadow">
+        <h1><%= @list.name %></h1>
+        <%= notice %>
+        <br>
+        <%= cl_image_tag(@list.photo.key, height: 200, width: 650)  %>
+        <%# <p><strong>Comment:</strong> <%= @bookmark.comment %>
+        <%# <%= link_to "Delete", list_path(@list), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+        <br><br>
+        <h3>Bookmarks:</h3>
+        <br>
+        <% @list.bookmarks.each do |bookmark| %>
+          <p>
+            <strong><%= bookmark.movie.title %>:</strong>  <%= bookmark.comment %>
+            <%= link_to "Delete",  bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+          </p>
+        <% end %>
+        <br>
+        <%= simple_form_for [@list, @bookmark ] do |f| %>
+          <%= f.input :comment %>
+          <%= f.association :movie %>
+          <%= f.button :submit, class: "btn btn-primary"%>
+        <% end %>
+        <br>
+        <%= link_to "↩︎ Back to List", root_path %>
+      </div>
+    </div>
+  </div>
 </div>
