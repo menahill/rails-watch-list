@@ -1,24 +1,59 @@
 
+<%#
 <div class = "container py-5">
   <div class = "row">
     <div class = "col-12">
-      <div class = "bg-white rounded p-3 shadow">
+      <div class = "bg-white rounded p-3 shadow"> %>
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="container-fluid">
+    <%= link_to "#", class: "navbar-brand" do %>
+      <%= image_tag "https://img.freepik.com/premium-photo/beautiful-popcorn-watercolor-carnival-clipart-illustration_962764-63730.jpg?w=1380" %>
+    <% end %>
 
-        <h1>Lists</h1>
-        <ol>
-          <% @lists.each do |list| %>
-          <div>
-            <h4>• <%= link_to list.name, list_path(list) %>
-              <%= link_to "🚮", list_path(list), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%></h4>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+        <%# if user_signed_in? %>
+          <li class="nav-item active">
+            <%= link_to "My List", "#", class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "New List", new_list_path(@list), class: "nav-link" %>
+          </li>
+
           </div>
-          <% end %>
-        </ol>
-        <br>
-        <%= link_to 'Add List', new_list_path(@list),  class: "btn btn-primary" %>
-        <br>
-        <br>
-        <%# <%= cl_image_tag("@list.photo.key",
-            width: 400, height: 300, crop: :fill) %>
+          </div>
     </div>
   </div>
 </div>
+
+
+<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://as2.ftcdn.net/v2/jpg/06/33/56/79/1000_F_633567910_ZDmzAoFokCEtqQBe32ahCJUzTrFWxQ8s.jpg)">
+<h1>Create your Lists </h1>
+</div>
+<br> <br>
+
+            <%# <div class="col-md-12 bg-light text-right">
+        <%= link_to 'Create a movie list', new_list_path(@list),  class: "btn btn-primary" %>
+
+<div class="container">
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <h3 class="mb-0">My Lists</h3>
+    <%= link_to "Create a movie list", new_list_path, class: "btn btn-success" %>
+  </div>
+  <div class="row">
+    <% @lists.each do |list| %>
+      <div class="co-12 col-sm-6 col-md-4 mb-3">
+        <%= link_to list_path(list), class:"text-decoration-none" do %>
+          <div class="card-category" data-aos="zoom-in" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= list.photo.attached? ? cl_image_path(list.photo.key) : asset_path('list_background.jpg') %>)">
+            <%= list.name %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+</div> 
